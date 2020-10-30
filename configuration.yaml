@@ -1,0 +1,21 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  unit_system: imperial
+  time_zone: America/Chicago
+  elevation: 181
+  internal_url: !secret internal_url
+  external_url: !secret external_url
+
+  packages: !include_dir_named packages
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+cloud:
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
