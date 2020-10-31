@@ -13,6 +13,8 @@ homeassistant:
 # Text to speech
 tts:
   - platform: google_translate
+lovelace:
+  mode: yaml
 
 cloud:
 group: !include groups.yaml

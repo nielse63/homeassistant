@@ -24,7 +24,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": ".bin/rsync",
       "pre-commit": "lint-staged"
     }
   },

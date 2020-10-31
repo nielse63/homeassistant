@@ -5,45 +5,57 @@ views:
     icon: "mdi:home"
     theme: nord
     cards:
-      - type: alarm-panel
-        entity: alarm_control_panel.1757_w_belle_plaine_ave_alarm_control_panel
-      - type: entities
-        entities:
-          - lock.1757_w_belle_plaine_ave_back_door
-          - lock.1757_w_belle_plaine_ave_front_door
-        title: Lock
-      - type: media-control
-        entity: media_player.living_room_tv
-      - type: gauge
-        entity: sensor.speedtest_download
-        min: 0
-        max: 500
-        unit: Mbit/S
-        theme: nord
-  - title: Health
-    path: health
-    icon: "mdi:heart-pulse"
-    theme: nord
-    badges: []
-    cards:
-      - type: entities
-        entities:
-          - device_tracker.erik_nielsens_iphone
-          - sensor.erik_nielsens_iphone_steps
+      - &ref_0
+        type: weather-forecast
+        entity: weather.openweathermap
+        name: Forecast
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: lock.1757_w_belle_plaine_ave_front_door
+              - entity: lock.1757_w_belle_plaine_ave_back_door
+              - entity: >-
+                  alarm_control_panel.1757_w_belle_plaine_ave_alarm_control_panel
+            title: SimpliSafe
+            theme: nord
+            show_header_toggle: false
+            state_color: true
+      - type: vertical-stack
+        cards:
+          - type: entities
+            entities:
+              - entity: sensor.speedtest_download
+              - entity: sensor.speedtest_upload
+              - entity: sensor.speedtest_ping
+              - entity: sensor.adguard_average_processing_speed
+              - entity: sensor.adguard_dns_queries_blocked_ratio
+            title: Network
+            state_color: false
   - id: weather
     icon: "mdi:weather-cloudy"
     path: weather
     title: Weather
     theme: nord
     cards:
-      - type: weather-forecast
-        entity: weather.openweathermap
+      - *ref_0
       - type: entities
-        title: Weather
+        title: Health Forecast
         show_header_toggle: false
         entities:
-          - sensor.allergy_index_today
-          - sensor.cold_flu_index_today
-          - sensor.asthma_index_today
-      - type: weather-forecast
-        entity: weather.home
+          - entity: sensor.allergy_index_today
+          - entity: sensor.cold_flu_index_today
+          - entity: sensor.asthma_index_today
+          - entity: sensor.us_coronavirus_confirmed
+      - type: iframe
+        url: >-
+          https://embed.windy.com/embed2.html?lat=41.955990&lon=-87.672730&detailLat=41.955990&detailLon=-87.672730&width=480&height=600&zoom=5&level=surface&overlay=rainAccu&product=ecmwf&menu=&message=true&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=true&metricWind=default&metricTemp=default&radarRange=-1
+        aspect_ratio: 100%
+  - title: Entertainment
+    path: entertainment
+    icon: "mdi:volume-high"
+    theme: nord
+    badges: []
+    cards:
+      - type: media-control
+        entity: media_player.living_room_tv

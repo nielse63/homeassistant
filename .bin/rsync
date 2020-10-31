@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
-ssh homeassistant "ha snapshots new"
+# ssh homeassistant "ha snapshots new"
 
-rsync -naptlzv \
-  --backup \
-  --backup-dir="/root/.backup" \
-  --verbose \
+rsync -atlzv \
   secrets.yaml \
   homeassistant:/root/config/secrets.yaml
