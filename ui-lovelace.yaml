@@ -5,8 +5,14 @@ views:
     icon: "mdi:home"
     theme: nord
     cards:
-      - &ref_0
-        type: weather-forecast
+      - entities:
+          - sensor.holidays_calendar
+          - input_select.holiday
+          - input_boolean.interior_holiday
+        show_header_toggle: false
+        title: Holiday Modes
+        type: entities
+      - type: weather-forecast
         entity: weather.openweathermap
         name: Forecast
       - type: vertical-stack
@@ -38,7 +44,6 @@ views:
     title: Weather
     theme: nord
     cards:
-      - *ref_0
       - type: entities
         title: Health Forecast
         show_header_toggle: false

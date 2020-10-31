@@ -7,14 +7,20 @@ homeassistant:
   elevation: 181
   internal_url: !secret internal_url
   external_url: !secret external_url
-
   packages: !include_dir_named packages
+  customize:
+    sensor.holidays_calendar:
+      icon: mdi:calendar
+      friendly_name: Upcoming Holiday
 
 # Text to speech
 tts:
   - platform: google_translate
 lovelace:
   mode: yaml
+google:
+  client_id: !secret google_calendar_client_id
+  client_secret: !secret google_calendar_client_secret
 
 cloud:
 group: !include groups.yaml
