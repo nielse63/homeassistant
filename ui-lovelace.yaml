@@ -1,0 +1,49 @@
+title: Home
+views:
+  - path: default_view
+    title: Home
+    icon: "mdi:home"
+    theme: nord
+    cards:
+      - type: alarm-panel
+        entity: alarm_control_panel.1757_w_belle_plaine_ave_alarm_control_panel
+      - type: entities
+        entities:
+          - lock.1757_w_belle_plaine_ave_back_door
+          - lock.1757_w_belle_plaine_ave_front_door
+        title: Lock
+      - type: media-control
+        entity: media_player.living_room_tv
+      - type: gauge
+        entity: sensor.speedtest_download
+        min: 0
+        max: 500
+        unit: Mbit/S
+        theme: nord
+  - title: Health
+    path: health
+    icon: "mdi:heart-pulse"
+    theme: nord
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - device_tracker.erik_nielsens_iphone
+          - sensor.erik_nielsens_iphone_steps
+  - id: weather
+    icon: "mdi:weather-cloudy"
+    path: weather
+    title: Weather
+    theme: nord
+    cards:
+      - type: weather-forecast
+        entity: weather.openweathermap
+      - type: entities
+        title: Weather
+        show_header_toggle: false
+        entities:
+          - sensor.allergy_index_today
+          - sensor.cold_flu_index_today
+          - sensor.asthma_index_today
+      - type: weather-forecast
+        entity: weather.home
